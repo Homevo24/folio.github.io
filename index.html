@@ -9,23 +9,57 @@
 </head>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Burger & sidebar
         const burger = document.getElementById('burger-menu');
-        const navLinks = document.getElementById('nav-links');
-        if (burger && navLinks) {
-            burger.addEventListener('click', function() {
-                navLinks.classList.toggle('open');
-            });
+        const sidebar = document.getElementById('sidebar-menu');
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+        function openSidebar() {
+            sidebar.classList.add('open');
+            document.body.classList.add('sidebar-open');
         }
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            document.body.classList.remove('sidebar-open');
+        }
+        if (burger && sidebar) {
+            burger.addEventListener('click', openSidebar);
+        }
+        // Close sidebar on click outside or on link
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', closeSidebar);
+        });
+        sidebar.addEventListener('click', function(e) {
+            if (e.target === sidebar) closeSidebar();
+        });
+        // ESC key closes sidebar
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeSidebar();
+        });
     });
-    </script>
+</script>
 <body>
+    <!-- Header bar with logo and burger always visible -->
+    <div class="header-bar">
+        <div class="header-logo">GNH</div>
+        <button class="burger" id="burger-menu" aria-label="Ouvrir le menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+    <!-- Sidebar menu -->
+    <aside class="sidebar-menu" id="sidebar-menu">
+        <div class="sidebar-logo">   </div>
+        <nav class="sidebar-links">
+            <a href="index.html" class="sidebar-link active">HOME</a>
+            <a href="about.html" class="sidebar-link">ABOUT</a>
+            <a href="resume.html" class="sidebar-link">RESUME</a>
+            <a href="portfolio.html" class="sidebar-link">PORTFOLIO</a>
+        </nav>
+    </aside>
+    <!-- Header/navbar for desktop -->
     <header class="navbar">
         <nav>
-            <button class="burger" id="burger-menu" aria-label="Ouvrir le menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
             <ul id="nav-links">
                 <li><a class="nav-link active" href="index.html">Home</a></li>
                 <li><a class="nav-link" href="about.html">About</a></li>
@@ -42,13 +76,13 @@
                 <h1><span class="home-name">GNAHOUI LEGER</span><br><span class="home-job">Développeur Web</span></h1>
                 <div class="home-buttons">
                     <button class="btn" data-page="resume"><a href="resume.html">Resume</a></button>
-                    <button class="btn" data-page="portfolio"><a href="portfolio.html"></a>Portfolio</button>
+                    <button class="btn" data-page="portfolio"><a href=""></a>Portfolio</button>
                 </div>
                 <div class="home-socials">
-                    <a href="https://www.facebook.com/share/19GqLEiaJ3/?mibextid=wwXIfr " target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.linkedin.com/in/l%C3%A9ger-gnahoui-b38a63280?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app " target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://homevo24.github.io/folio.github.io/" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://x.com/l_gnahoui?s=21" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
                 </div>
             </div>
         </section>
