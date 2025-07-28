@@ -7,17 +7,32 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const burger = document.getElementById('burger-menu');
+        const navLinks = document.getElementById('nav-links');
+        if (burger && navLinks) {
+            burger.addEventListener('click', function() {
+                navLinks.classList.toggle('open');
+            });
+        }
+    });
+    </script>
 <body>
     <header class="navbar">
         <nav>
-            <ul>
-                <li class="nav-link active" data-page="home">Home</li>
-                <li class="nav-link" data-page="about"><a href="about.html">About</a></li>
-                <li class="nav-link" data-page="resume"> <a href="resume.html">Resume </a></li>
-                <li class="nav-link" data-page="portfolio"><a href="portfolio.html">Portfolio</a></li>
+            <button class="burger" id="burger-menu" aria-label="Ouvrir le menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="nav-links">
+                <li><a class="nav-link active" href="index.html">Home</a></li>
+                <li><a class="nav-link" href="about.html">About</a></li>
+                <li><a class="nav-link" href="resume.html">Resume</a></li>
+                <li><a class="nav-link" href="portfolio.html">Portfolio</a></li>
             </ul>
         </nav>
-      
     </header>
     <main id="main-content">
         <!-- Home Page Content -->
