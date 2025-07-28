@@ -9,23 +9,57 @@
 </head>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Burger & sidebar
         const burger = document.getElementById('burger-menu');
-        const navLinks = document.getElementById('nav-links');
-        if (burger && navLinks) {
-            burger.addEventListener('click', function() {
-                navLinks.classList.toggle('open');
-            });
+        const sidebar = document.getElementById('sidebar-menu');
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+        function openSidebar() {
+            sidebar.classList.add('open');
+            document.body.classList.add('sidebar-open');
         }
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            document.body.classList.remove('sidebar-open');
+        }
+        if (burger && sidebar) {
+            burger.addEventListener('click', openSidebar);
+        }
+        // Close sidebar on click outside or on link
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', closeSidebar);
+        });
+        sidebar.addEventListener('click', function(e) {
+            if (e.target === sidebar) closeSidebar();
+        });
+        // ESC key closes sidebar
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeSidebar();
+        });
     });
-    </script>
+</script>
 <body>
+    <!-- Header bar with logo and burger always visible -->
+    <div class="header-bar">
+        <div class="header-logo">GNH</div>
+        <button class="burger" id="burger-menu" aria-label="Ouvrir le menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+    <!-- Sidebar menu -->
+    <aside class="sidebar-menu" id="sidebar-menu">
+        <div class="sidebar-logo"></div>
+        <nav class="sidebar-links">
+            <a href="index.html" class="sidebar-link">HOME</a>
+            <a href="about.html" class="sidebar-link">ABOUT</a>
+            <a href="resume.html" class="sidebar-link">RESUME</a>
+            <a href="portfolio.html" class="sidebar-link active">PORTFOLIO</a>
+        </nav>
+    </aside>
+    <!-- Header/navbar for desktop -->
     <header class="navbar">
         <nav>
-            <button class="burger" id="burger-menu" aria-label="Ouvrir le menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
             <ul id="nav-links">
                 <li><a class="nav-link" href="index.html">Home</a></li>
                 <li><a class="nav-link" href="about.html">About</a></li>
@@ -61,7 +95,7 @@
                     <div class="portfolio-img" style="background-image:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80');"></div>
                     <div class="portfolio-info">
                         <h3>Application de Gestion</h3>
-                        <p>Gestion des tâches avec stockage local, interface moderne et responsive.</p>
+                        <p>Gestion de tâches avec stockage local, interface moderne et responsive.</p>
                         <a href="#" class="btn btn-portfolio">Voir plus</a>
                     </div>
                 </div>
